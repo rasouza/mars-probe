@@ -37,9 +37,11 @@ class Probe
   # y' = xsen(theta) + ycos(theta)
 
   def rotate(radians)
-    @direction[0] = (direction[0]*Math.cos(radians) - direction[1]*Math.sin(radians)).round
-    @direction[1] = (direction[0]*Math.sin(radians) + direction[1]*Math.cos(radians)).round
+    x = (direction[0]*Math.cos(radians) - direction[1]*Math.sin(radians)).round
+    y = (direction[0]*Math.sin(radians) + direction[1]*Math.cos(radians)).round
 
+    @direction = [x, y]
+    
     return self
   end
 
