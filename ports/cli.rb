@@ -10,8 +10,9 @@ class CLI
 
   def run
     planet = create_planet
-    each_probe(planet) do |probe|
-      p probe
+    each_probe(planet) do |probe, commands|
+      commands.each { |command| probe.send(*command) }
+      puts probe
     end
   end
 
@@ -24,10 +25,13 @@ class CLI
   end
 
   def each_probe(planet)
-    content.readlines.map(&:chomp).each_slice(2) do |commands|
+    content.readlines.map(&:chomp).each_slice(2) do |group|
       probe = Probe.new
-      probe.deploy_to!(planet, *Parser::position(commands[0]))
-      yield probe
+      probe.deploy_to!(planet, *Parser::position(group[0]))
+
+      commands = Parser::commands(group[1])
+
+      yield probe, commands
     end
   end
 end
