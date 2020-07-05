@@ -1,5 +1,8 @@
 class Parser
   class << self
+
+    AMOUNT = Math::PI/2
+
     def position(position)
       x, y, direction = position.split(' ')
 
@@ -11,6 +14,26 @@ class Parser
 
     def planet(size)
       size.split(' ').map(&:to_i)
+    end
+
+    def commands(commands)
+      commands.chars.map{ |command| send(command) }
+    end
+
+    def L
+      [:rotate, -AMOUNT]
+    end
+
+    def R
+      [:rotate, AMOUNT]
+    end
+
+    def M
+      :move!
+    end
+
+    def P
+      :take_picture
     end
   end
 end
