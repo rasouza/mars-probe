@@ -14,6 +14,12 @@ class Probe
 
   attr_accessor :position, :direction, :planet
 
+  ##
+  # Deploys a Space Probe into an existent planet
+  #
+  # The Probe must be deployed on a valid position,
+  # otherwise it will raise an OutOfBounds exception
+  
   def deploy_to!(planet, position=[0,0], direction=:N)
     @planet = planet
     raise OutOfBounds.new(position) unless planet.within_boundary?(position)
