@@ -49,6 +49,7 @@ class Probe
     new_position = [x, y]
     raise OutOfBounds.new(new_position) unless planet.within_boundary?(new_position)
 
+    @position = new_position
     return self
   end
 
