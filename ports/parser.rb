@@ -17,7 +17,14 @@ class Parser
     end
 
     def commands(commands)
-      commands.chars.map{ |command| send(command) }
+      commands.chars.map do |command|
+        begin
+          send(command)
+        rescue NoMethodError
+          raise CommandNotFound.new(command)
+        end
+      end
+
     end
 
     def L

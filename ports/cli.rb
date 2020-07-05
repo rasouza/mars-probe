@@ -16,6 +16,8 @@ class CLI
     end
   rescue OutOfBounds => e
     puts "The Probe has fallen to the void, near #{e.position}"
+  rescue CommandNotFound => e
+    puts "The Probe doesn't recognize such command: #{e.command}"
   end
 
   private
