@@ -41,7 +41,7 @@ class Probe
     y = (direction[0]*Math.sin(radians) + direction[1]*Math.cos(radians)).round
 
     @direction = [x, y]
-    
+
     return self
   end
 

@@ -21,11 +21,11 @@ class Parser
     end
 
     def L
-      [:rotate, -AMOUNT]
+      [:rotate, AMOUNT]
     end
 
     def R
-      [:rotate, AMOUNT]
+      [:rotate, -AMOUNT]
     end
 
     def M
