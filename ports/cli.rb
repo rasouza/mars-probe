@@ -14,6 +14,8 @@ class CLI
       commands.each { |command| probe.send(*command) }
       puts probe
     end
+  rescue OutOfBounds => e
+    puts "The Probe has fallen to the void, near #{e.position}"
   end
 
   private
