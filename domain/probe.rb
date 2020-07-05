@@ -2,7 +2,6 @@
 # Implements Space Probe commands
 #
 # Every method returns itself so you can chain multiple commands
-#
 
 class Probe
 
@@ -34,6 +33,21 @@ class Probe
   def rotate(radians)
     @direction[0] = (direction[0]*Math.cos(radians) - direction[1]*Math.sin(radians)).round
     @direction[1] = (direction[0]*Math.sin(radians) + direction[1]*Math.cos(radians)).round
+
+    return self
+  end
+
+  ##
+  # Move Space Probe 1 tile in its current direction
+
+  def move!()
+    x, y = position
+
+
+    x += direction[0]
+    y += direction[1]
+    new_position = [x, y]
+    raise OutOfBounds.new(new_position) unless planet.within_boundary?(new_position)
 
     return self
   end
