@@ -19,7 +19,7 @@ class Probe
   #
   # The Probe must be deployed on a valid position,
   # otherwise it will raise an OutOfBounds exception
-  
+
   def deploy_to!(planet, position=[0,0], direction=:N)
     @planet = planet
     raise OutOfBounds.new(position) unless planet.within_boundary?(position)
@@ -45,10 +45,12 @@ class Probe
 
   ##
   # Move Space Probe 1 tile in its current direction
+  #
+  # There must be a valid position to be moved into,
+  # otherwise it will raise an OutOfBounds exception
 
-  def move!()
+  def move!
     x, y = position
-
 
     x += direction[0]
     y += direction[1]
@@ -60,7 +62,17 @@ class Probe
   end
 
   ##
+  # Commands Space Probe to take a picture of its surroundings
+  #
+  # Since there's no specification of what the Space Probe should do,
+  # it will only notify about it
+  def take_picture
+    puts "Taking picture from #{position}"
+  end
+
+  ##
   # to_s method defines how to output a Space Probe as a string
+
   def to_s
     puts "#{position[0]} #{position[1]} #{COMPASS.key(direction)}"
   end
