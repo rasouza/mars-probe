@@ -74,6 +74,6 @@ class Probe
   # to_s method defines how to output a Space Probe as a string
 
   def to_s
-    puts "#{position[0]} #{position[1]} #{COMPASS.key(direction)}"
+    "#{position[0]} #{position[1]} #{COMPASS.key(direction)}"
   end
 end
