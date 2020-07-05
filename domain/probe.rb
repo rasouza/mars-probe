@@ -15,11 +15,12 @@ class Probe
 
   attr_accessor :position, :direction, :planet
 
-  def deploy_to(planet, position=[0,0], direction=:N)
-    # TODO: check if position is possible
+  def deploy_to!(planet, position=[0,0], direction=:N)
+    @planet = planet
+    raise OutOfBounds.new(position) unless planet.within_boundary?(position)
 
     @position = position
-    @direction = direction
+    @direction = COMPASS[direction]
 
     return self
   end
@@ -31,8 +32,8 @@ class Probe
   # y' = xsen(theta) + ycos(theta)
 
   def rotate(radians)
-    @position[0] = position[0]*Math.cos(radians) - position[1]*Math.sin(radians)
-    @position[1] = position[0]*Math.sin(radians) + position[1]*Math.cos(radians)
+    @direction[0] = (direction[0]*Math.cos(radians) - direction[1]*Math.sin(radians)).round
+    @direction[1] = (direction[0]*Math.sin(radians) + direction[1]*Math.cos(radians)).round
 
     return self
   end

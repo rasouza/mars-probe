@@ -9,7 +9,6 @@ class Planet
   def within_boundary?(position)
     x, y = position
 
-    raise OutOfBounds.new(position) \
-      unless (0..width).include?(x) and (0..height).include?(y)
+    return (0..width).include?(x) && (0..height).include?(y)
   end
 end
